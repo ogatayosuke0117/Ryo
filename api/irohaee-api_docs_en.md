@@ -76,15 +76,16 @@ Configure connection information to Iroha
 ### Argument
 | Argument name | Required | Content | Format |
 |:----|:----:|:----|:----|
-| host | 0 | Iroha Torii address | IPv6 4, IPv6 6, domain name, etc. |
-| port | ◯ | Torii port number | Positive number |
+| host | ○ | Iroha Torii address | IPv4, IPv6, domain name, etc. |
+| port | ○ | Torii port number | Positive number |
 | timeout | | Connection Timeout Time (seconds) | Positive number |
 
 ### Return value
 None
 
 ### Content
-Set the connection information to Iroha. If this function is not called, it is connected to 127.0.0.1:50051.  
+Set the connection information to Iroha. 
+If this function is not called, it is connected to 127.0.0.1:50051.  
 
 ### Limitations
 <br>
@@ -96,13 +97,13 @@ Set account information to operate and refer to Iroha
 | Argument name | Required | Content | Format |
 |:----|:----:|:----|:----|
 | account_id | ○ | Account ID | <account_name>@<domain_id> |
-| private_key | ○ | Private key corresponding to the public key configured for the account | Ed 25519 private key |
+| private_key | ○ | Private key corresponding to the public key configured for the account | ed25519 private key |
 
 ### Return value
 None
 
 ### Content
-Configure Iroha with an account that issues transactions and queries.
+Configure an account that issues transactions and queries on iroha
 
 ### Limitations
 <br>
@@ -126,8 +127,7 @@ Add Quantities to an Asset
 | Return Value Name | Content | Format | Retrieval Methods (Java) |
 |:----|:----|:----|:----|
 | tx _ hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash () | 
-| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" |
-|ToriiResponse# getStatus (). toString () |
+| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse# getStatus (). toString () |
 
 ### Exception
 When command execution error happen, IrohaEETransactionException is transmitted.
@@ -137,7 +137,7 @@ The return value is taken from IrohaEETransactionException.
 | Return Value Name | Content | Format | Retrieval Methods (Java) | 
 |:-|:----|:----|:---|
 | tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse (). getTxHash () |
-| status | Transaction status | one of "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse (). getTxStatus (). toString () | error _ code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode () |
+| status | Transaction status | one of "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse (). getTxStatus (). toString () | error _ code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode () | error _ code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode ()<br> |
 
 ### Content
 Add the amount of assets owned by the account that issued the transaction.
@@ -194,7 +194,7 @@ Add a signature
 | Argument name | Required | Content | Format |
 |:----|:----:|:----|:----|
 | account_id | ○ | Account ID to which the signature is added | <account_name>@<domain_id> |
-| public_key | ○ | Public key to add to the account | Ed 25519 public key |
+| public_key | ○ | Public key to add to the account | ed25519 public key |
 
 - Account ID must be created in advance
 
@@ -213,7 +213,7 @@ The return value is taken from IrohaEETransactionException.
 |:-|:----|:----|:----|
 | tx _ hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse (). getTxHash () |
 | status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse (). getTxStatus (). toString () | 
-| error _ code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode () |
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode () |
 
 ### Content
 Add a signature to the specified account.
@@ -241,7 +241,7 @@ Add a role to an account
 ### Return value
 | Return Value Name | Content | Format | Retrieval Methods (Java) |
 |:-|:----|:----|:---|
-| tx _ hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash () | 
+| tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash () | 
 | status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus (). toString () |
 
 
@@ -252,9 +252,9 @@ The return value is taken from IrohaEETransactionException.
 
 | Return Value Name | Content | Format | Retrieval Methods (Java) |
 |:-|:----|:----|:----|
-| tx _ hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse (). getTxHash () |
-| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse (). getTxStatus (). toString () | 
-| error _ code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode () |
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
+| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Add a role to the specified account.
@@ -273,7 +273,7 @@ Create a new account
 |:----|:----:|:----|:----|
 | account_name | ○ | Account Name | [a-z_0-9{1,32}] |
 | domain_id | ○ | Domain ID | RFC1035, RFC1123 |
-| public_key | ○ | Public key to add to the account | Ed 25519 public key |
+| public_key | ○ | Public key to add to the account | ed25519 public key |
 
 - Domain ID must be created in advance
 - Account name must be unique within the domain
@@ -281,8 +281,8 @@ Create a new account
 ### Return value
 | Return Value Name | Content | Format | Retrieval Methods (Java) |
 |:-|:----|:----|:---|
-| tx _ hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash () | 
-| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus (). toString () |
+| tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
+| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
 
 
 ### Exception
@@ -292,9 +292,9 @@ The return value is taken from IrohaEETransactionException.
 
 | Return Value Name | Content | Format | Retrieval Methods (Java) |
 |:-|:----|:----|:----|
-| tx _ hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse (). getTxHash () |
-| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse (). getTxStatus (). toString () | 
-| error _ code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode () |
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
+| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Create a new account in the specified domain.
@@ -319,7 +319,10 @@ Publishing assets
 - Asset names must be unique within the domain
 
 ### Return value
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash ToriiResponse #getTxHash () status One of the transaction states "COMMITTED" or "MST _ PENDING" ToriiResponse #getTxStatus (). toString ()
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:---|
+| tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
+| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
 
 
 ### Exception
@@ -327,7 +330,11 @@ A command execution error IrohaEETransactionException is transmitted.
 
 The return value is taken from IrohaEETransactionException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash IrohaEETransactionException #getResponse (). getTxHash () status Transaction status "REJECTED" or "STATELESS _ VALIDATION _ FAILED" IrohaEETransactionException #getResponse (). getTxStatus (). toString () error _ code Error Codes Stateful validation error codes Error codes are compliant with the IrohaAPI specification IrohaEETransactionException #getStatefullErrorCode ()<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:----|
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
+| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Create a new asset in the specified domain.
@@ -351,14 +358,21 @@ Create a domain
 - Domain ID must be unique on the system
 
 ### Return value
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash ToriiResponse #getTxHash () status One of the transaction states "COMMITTED" or "MST _ PENDING" ToriiResponse #getTxStatus (). toString ()
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:---|
+| tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
+| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
 
 ### Exception
 A command execution error IrohaEETransactionException is transmitted.
 
 The return value is taken from IrohaEETransactionException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash IrohaEETransactionException #getResponse (). getTxHash () status Transaction status "REJECTED" or "STATELESS _ VALIDATION _ FAILED" IrohaEETransactionException #getResponse (). getTxStatus (). toString () error _ code Error Codes Stateful validation error codes Error codes are compliant with the IrohaAPI specification IrohaEETransactionException #getStatefullErrorCode ()<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:----|
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
+| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Create a new domain in the Iroha network.
@@ -376,21 +390,27 @@ Create a role
 | Argument name | Required | Content | Format |
 |:----|:----:|:----|:----|
 | role_name | ○ | Role Name | [a-z_0-9{1,32}] |
-| permissions | ○ | Array of authority | ex: can_receive, can_transfer[] |
+| permissions | ○ | Array of authority | ex: [can_receive, can_transfer] |
 
 - Permissions must have one or more permissions
-- See here for configurable permissions[](https://iroha.readthedocs.io/en/latest/develop/api/permissions.html#list-of-permissions)
+- See here for configurable [permissions](https://iroha.readthedocs.io/en/latest/develop/api/permissions.html#list-of-permissions)
 
 ### Return value
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash ToriiResponse #getTxHash () status One of the transaction states "COMMITTED" or "MST _ PENDING" ToriiResponse #getTxStatus (). toString ()
-
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:---|
+| tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
+| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
 
 ### Exception
 A command execution error IrohaEETransactionException is transmitted.
 
 The return value is taken from IrohaEETransactionException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash IrohaEETransactionException #getResponse (). getTxHash () status Transaction status "REJECTED" or "STATELESS _ VALIDATION _ FAILED" IrohaEETransactionException #getResponse (). getTxStatus (). toString () error _ code Error Codes Stateful validation error codes Error codes are compliant with the IrohaAPI specification IrohaEETransactionException #getStatefullErrorCode ()<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:----|
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
+| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Create a new role on the system.
@@ -413,14 +433,21 @@ Detach Roles
 - Account ID must have role to detach
 
 ### Return value
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash ToriiResponse #getTxHash () status One of the transaction states "COMMITTED" or "MST _ PENDING" ToriiResponse #getTxStatus (). toString ()
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:---|
+| tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
+| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
 
 ### Exception
 A command execution error IrohaEETransactionException is transmitted.
 
 The return value is taken from IrohaEETransactionException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash IrohaEETransactionException #getResponse (). getTxHash () status Transaction status "REJECTED" or "STATELESS _ VALIDATION _ FAILED" IrohaEETransactionException #getResponse (). getTxStatus (). toString () error _ code Error Codes Stateful validation error codes Error codes are compliant with the IrohaAPI specification IrohaEETransactionException #getStatefullErrorCode ()<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:----|
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
+| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Detach the role from the specified account.
@@ -441,7 +468,7 @@ Delegate authority
 | permission | ○ | Authority to delegate | Permissions that are grantable (see below) |
 
 - Account ID must be created in advance
-- The configurable grantable privileges are :[](https://iroha.readthedocs.io/en/latest/develop/api/permissions.html#list-of-permissions)
+- The configurable grantable privileges are below :(refer to [here](https://iroha.readthedocs.io/en/latest/develop/api/permissions.html#list-of-permissions))
    - can_add_my_signatory
    - can_remove_my_signatory
    - can_set_my_account_detail
@@ -449,15 +476,21 @@ Delegate authority
    - can_transfer_my_assets
 
 ### Return value
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash ToriiResponse #getTxHash () status One of the transaction states "COMMITTED" or "MST _ PENDING" ToriiResponse #getTxStatus (). toString ()
-
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:---|
+| tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
+| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
 
 ### Exception
 A command execution error IrohaEETransactionException is transmitted.
 
 The return value is taken from IrohaEETransactionException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash IrohaEETransactionException #getResponse (). getTxHash () status Transaction status "REJECTED" or "STATELESS _ VALIDATION _ FAILED" IrohaEETransactionException #getResponse (). getTxStatus (). toString () error _ code Error Codes Stateful validation error codes Error codes are compliant with the IrohaAPI specification IrohaEETransactionException #getStatefullErrorCode ()<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:----|
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
+| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Delegate specified privileges to the account specified by the transaction issuer.
@@ -477,25 +510,32 @@ The issuer of the transaction must have the authority to delegate.
 <br>
 
 ## removePeer
-Removing peers from the Iroha network
+Remove peers from the Iroha network
 
 ### Argument
 | Argument name | Required | Content | Format |
 |:----|:----:|:----|:----|
-| public_key | ○ | Public key of the peer to remove | Ed 25519 public key |
+| public_key | ○ | Public key of the peer to remove | ed25519 public key |
 
 - A peer with the specified public key must exist on the Iroha network
 - A peer other than the one with the specified public key must exist on the Iroha network
 
 ### Return value
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash ToriiResponse #getTxHash () status One of the transaction states "COMMITTED" or "MST _ PENDING" ToriiResponse #getTxStatus (). toString ()
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:---|
+| tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
+| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
 
 ### Exception
 A command execution error IrohaEETransactionException is transmitted.
 
 The return value is taken from IrohaEETransactionException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash IrohaEETransactionException #getResponse (). getTxHash () status Transaction status "REJECTED" or "STATELESS _ VALIDATION _ FAILED" IrohaEETransactionException #getResponse (). getTxStatus (). toString () error _ code Error Codes Stateful validation error codes Error codes are compliant with the IrohaAPI specification IrohaEETransactionException #getStatefullErrorCode ()<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:----|
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
+| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Write the fact that the peer was removed to the peer network in the ledger.
@@ -513,13 +553,16 @@ Remove a signature
 | Argument name | Required | Content | Format |
 |:----|:----:|:----|:----|
 | account_id | ○ | Account ID | <account_name>@<domain_id> |
-| public_key | ○ | Public key to delete from the account | Ed 25519 public key |
+| public_key | ○ | Public key to delete from the account | ed25519 public key |
 
 - Account ID must be created in advance
 - The number of public keys associated with the account, excluding the public key to be deleted, must be greater than or equal to quorum
 
 ### Return value
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash ToriiResponse #getTxHash () status One of the transaction states "COMMITTED" or "MST _ PENDING" ToriiResponse #getTxStatus (). toString ()
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:---|
+| tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
+| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
 
 
 ### Exception
@@ -527,7 +570,11 @@ A command execution error IrohaEETransactionException is transmitted.
 
 The return value is taken from IrohaEETransactionException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash IrohaEETransactionException #getResponse (). getTxHash () status Transaction status "REJECTED" or "STATELESS _ VALIDATION _ FAILED" IrohaEETransactionException #getResponse (). getTxStatus (). toString () error _ code Error Codes Stateful validation error codes Error codes are compliant with the IrohaAPI specification IrohaEETransactionException #getStatefullErrorCode ()<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:----|
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
+| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Remove a signature from the specified account.
@@ -548,7 +595,7 @@ Revoke authority
 | permission | ○ | Power to revoke | Permissions that are grantable (see below) |
 
 - The privileges you want to revoke must be granted in advance to the account you specify
-- The configurable grantable privileges are :[](https://iroha.readthedocs.io/en/latest/develop/api/permissions.html#list-of-permissions)
+- The configurable grantable privileges are below :(refer to [here](https://iroha.readthedocs.io/en/latest/develop/api/permissions.html#list-of-permissions))
    - can_add_my_signatory
    - can_remove_my_signatory
    - can_set_my_account_detail
@@ -556,14 +603,22 @@ Revoke authority
    - can_transfer_my_assets
 
 ### Return value
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash ToriiResponse #getTxHash () status One of the transaction states "COMMITTED" or "MST _ PENDING" ToriiResponse #getTxStatus (). toString ()
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:---|
+| tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
+| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
+
 
 ### Exception
 A command execution error IrohaEETransactionException is transmitted.
 
 The return value is taken from IrohaEETransactionException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash IrohaEETransactionException #getResponse (). getTxHash () status Transaction status "REJECTED" or "STATELESS _ VALIDATION _ FAILED" IrohaEETransactionException #getResponse (). getTxStatus (). toString () error _ code Error Codes Stateful validation error codes Error codes are compliant with the IrohaAPI specification IrohaEETransactionException #getStatefullErrorCode ()<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:----|
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
+| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Revoke the authority delegated by the transaction issuer to the specified account.
@@ -583,7 +638,7 @@ The issuer of the transaction must have the authority to revoke.
 <br>
 
 ## setAccountDetail
-Setting Account Details
+Set Account Details
 
 ### Argument
 | Argument name | Required | Content | Format |
@@ -595,14 +650,21 @@ Setting Account Details
 - Account ID must be created in advance
 
 ### Return value
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash ToriiResponse #getTxHash () status One of the transaction states "COMMITTED" or "MST _ PENDING" ToriiResponse #getTxStatus (). toString ()
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:---|
+| tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
+| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
 
 ### Exception
 A command execution error IrohaEETransactionException is transmitted.
 
 The return value is taken from IrohaEETransactionException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash IrohaEETransactionException #getResponse (). getTxHash () status Transaction status "REJECTED" or "STATELESS _ VALIDATION _ FAILED" IrohaEETransactionException #getResponse (). getTxStatus (). toString () error _ code Error Codes Stateful validation error codes Error codes are compliant with the IrohaAPI specification IrohaEETransactionException #getStatefullErrorCode ()<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:----|
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
+| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Sets the key value information associated with the specified account. If the account already has a key, overwrite the value.  
@@ -625,14 +687,21 @@ Set the quorum for an account
 - The account ID must be created in advance.
 
 ### Return value
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash ToriiResponse #getTxHash () status One of the transaction states "COMMITTED" or "MST _ PENDING" ToriiResponse #getTxStatus (). toString ()
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:---|
+| tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
+| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
 
 ### Exception
 A command execution error IrohaEETransactionException is transmitted.
 
 The return value is taken from IrohaEETransactionException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash IrohaEETransactionException #getResponse (). getTxHash () status Transaction status "REJECTED" or "STATELESS _ VALIDATION _ FAILED" IrohaEETransactionException #getResponse (). getTxStatus (). toString () error _ code Error Codes Stateful validation error codes Error codes are compliant with the IrohaAPI specification IrohaEETransactionException #getStatefullErrorCode ()<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:----|
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
+| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Sets the quorum count for the account for the specified account.
@@ -656,14 +725,21 @@ Reduce the quantity of assets
 - Asmount allows decimal notation according to precision when created
 
 ### Return value
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash ToriiResponse #getTxHash () status One of the transaction states "COMMITTED" or "MST _ PENDING" ToriiResponse #getTxStatus (). toString ()
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:---|
+| tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
+| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
 
 ### Exception
 A command execution error IrohaEETransactionException is transmitted.
 
 The return value is taken from IrohaEETransactionException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash IrohaEETransactionException #getResponse (). getTxHash () status Transaction status "REJECTED" or "STATELESS _ VALIDATION _ FAILED" IrohaEETransactionException #getResponse (). getTxStatus (). toString () error _ code Error Codes Stateful validation error codes Error codes are compliant with the IrohaAPI specification IrohaEETransactionException #getStatefullErrorCode ()<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:----|
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
+| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Decrements the amount of assets owned by the account that issued the transaction.
@@ -692,20 +768,29 @@ Transfer the assets
 - Quantities can be expressed as decimal points according to precision at creation
 
 ### Return value
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash ToriiResponse #getTxHash () status One of the transaction states "COMMITTED" or "MST _ PENDING" ToriiResponse #getTxStatus (). toString ()
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:---|
+| tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
+| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
 
 ### Exception
 A command execution error IrohaEETransactionException is transmitted.
 
 The return value is taken from IrohaEETransactionException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash IrohaEETransactionException #getResponse (). getTxHash () status Transaction status "REJECTED" or "STATELESS _ VALIDATION _ FAILED" IrohaEETransactionException #getResponse (). getTxStatus (). toString () error _ code Error Codes Stateful validation error codes Error codes are compliant with the IrohaAPI specification IrohaEETransactionException #getStatefullErrorCode ()<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:----|
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
+| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Transfer assets from one account to another.
 
 ### Authority
-The issuer of the transaction must have the can _ transfer privilege. The relocation account must have the can _ receive privilege. If you want the source account to have an account other than the issuer of the transaction, the can _ transfer _ my _ assets privilege must be delegated to it.    
+The issuer of the transaction must have the can_transfer privilege. 
+The relocation account must have the can_receive privilege. 
+If you want the source account to have an account other than the issuer of the transaction, the can_transfer_my_assets privilege must be delegated to it.    
 
 ### Limitations
 <br>
@@ -724,14 +809,21 @@ Replace the contents of account details
 - Account ID must be created in advance
 
 ### Return value
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash ToriiResponse #getTxHash () status One of the transaction states "COMMITTED" or "MST _ PENDING" ToriiResponse #getTxStatus (). toString ()
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:---|
+| tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
+| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
 
 ### Exception
 A command execution error IrohaEETransactionException is transmitted.
 
 The return value is taken from IrohaEETransactionException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash IrohaEETransactionException #getResponse (). getTxHash () status Transaction status "REJECTED" or "STATELESS _ VALIDATION _ FAILED" IrohaEETransactionException #getResponse (). getTxStatus (). toString () error _ code Error Codes Stateful validation error codes Error codes are compliant with the IrohaAPI specification IrohaEETransactionException #getStatefullErrorCode ()<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:----|
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
+| status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
+| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Update the key value information with the new value only if the current value corresponding to the key is the specified value. If the specified key does not exist in the account, the new value is set to the key value information.  
@@ -744,8 +836,10 @@ If the issuer of the transaction wants to set details for another account, it mu
 | Target Account | Necessary authority |
 |:----|:----|
 | Transaction issuer itself | 1. can_get_my_acc_detail / can_get_all_acc_detail / can_get_domain_acc_detail |
-| Accounts in the same domain | 1. can_set_detail / (granted) can_set_my_account_detail 2. can_get_all_acc_detail / can_get_domain_acc_detail<br> |
-| Accounts in another domain | 1. can_set_detail / (granted) can_set_my_account_detail 2. can_get_all_acc_detail<br> |
+| Accounts in the same domain | 1. can_set_detail / (granted) can_set_my_account_detail 
+2. can_get_all_acc_detail / can_get_domain_acc_detail<br> |
+| Accounts in another domain | 1. can_set_detail / (granted) can_set_my_account_detail 
+2. can_get_all_acc_detail<br> |
 
 ### Limitations
 <br>
@@ -775,7 +869,9 @@ A query execution error IrohaEEQueryException is sent.
 
 The return value is taken from IrohaEEQueryException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- -- : ---- -- reason Cause Code is IrohaAPI compliant IrohaEEQueryException #getErrorResponse (). getReasonValue () message error message error message IrohaEEQueryException #getErrorResponse (). getMessage () error _ code Stateful validation error code Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode ()[](#Causecode)<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:-|:----|:----|:----| 
+| Reason | Cause code | [Cause code](#Causecode) is based on IrohaAPI specification | IrohaEEQueryException #getErrorResponse(). getReasonValue() | error  message | error message | IrohaEEQueryException #getErrorResponse(). getMessage() | error _ code | error code of stateful validation | error code of stateful validation<br>error code is based on IrohaAPI specification | IrohaEEQueryException#getStatefullErrorCode()
 
 ### Content
 Gets the status of the specified account.
