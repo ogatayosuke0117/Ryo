@@ -144,7 +144,7 @@ The return value is taken from IrohaEETransactionException.
 Add the amount of assets owned by the account that issued the transaction.
 
 ### Authority
-The transaction issuer must have the can _ add _ asset _ qty or can _ add _ domain _ asset _ qty privilege. However, the can _ add _ domain _ asset _ qty privilege can only be executed on assets in the domain to which the transaction issuer belongs.  
+The transaction issuer must have the can_add_asset_qty or can_add_domain_asset_qty privilege. However, the can_add_domain_asset_qty privilege can only be executed on assets in the domain to which the transaction issuer belongs.  
 
 ### Limitations
 <br>
@@ -155,7 +155,7 @@ Add peers to the network
 ### Argument
 | Argument name | Required | Content | Format |
 |:----|:----:|:----|:----|
-| address | ○ | Resolvable addresses in the network | IPv6 4, IPv6 6, domain name, etc. |
+| address | ○ | Resolvable addresses in the network | IPv4, IPv6, domain name, etc. |
 | peer_key | ○ | Peer public key | ed25519 public key |
 
 - Public keys are used in consensus building algorithms
@@ -165,7 +165,7 @@ Add peers to the network
 | Return Value Name | Content | Format | Retrieval Methods (Java) |
 |:-|:----|:----|:---|
 | tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash () | 
-| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus (). toString () |
+| status | transaction states | one of the "COMMITTED" or "MST_PENDING" | ToriiResponse #getTxStatus (). toString() |
 
 
 ### Exception
@@ -203,7 +203,7 @@ Add a signature
 | Return Value Name | Content | Format | Retrieval Methods (Java) |
 |:-|:----|:----|:---|
 | tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash () | 
-| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus (). toString () |
+| status | transaction states | one of the "COMMITTED" or "MST_PENDING" | ToriiResponse #getTxStatus (). toString () |
 
 ### Exception
 A command execution error IrohaEETransactionException is transmitted.
@@ -220,7 +220,7 @@ The return value is taken from IrohaEETransactionException.
 Add a signature to the specified account.
 
 ### Authority
-The issuer of the transaction must have the can _ add _ signatory privilege.
+The issuer of the transaction must have the can_add_signatory privilege.
 
 
 The can _ add _ signatory privilege is required if the issuer of the transaction adds its own signature. If the issuer of the transaction adds a signature to another account, the can_add_my_signatory privilege must be delegated from that account.  
@@ -243,7 +243,7 @@ Add a role to an account
 | Return Value Name | Content | Format | Retrieval Methods (Java) |
 |:-|:----|:----|:---|
 | tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash () | 
-| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus (). toString () |
+| status | transaction states | one of the "COMMITTED" or "MST_PENDING" | ToriiResponse #getTxStatus (). toString () |
 
 
 ### Exception
@@ -261,7 +261,7 @@ The return value is taken from IrohaEETransactionException.
 Add a role to the specified account.
 
 ### Authority
-The issuer of the transaction must have the can _ append _ role privilege.
+The issuer of the transaction must have the can_append_role privilege.
 
 ### Limitations
 <br>
@@ -301,7 +301,7 @@ The return value is taken from IrohaEETransactionException.
 Create a new account in the specified domain.
 
 ### Authority
-The issuer of the transaction must have the can _ create _ account privilege.
+The issuer of the transaction must have the can_create_account privilege.
 
 ### Limitations
 <br>
@@ -323,7 +323,7 @@ Publishing assets
 | Return Value Name | Content | Format | Retrieval Methods (Java) |
 |:-|:----|:----|:---|
 | tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
-| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
+| status | transaction states | one of the "COMMITTED" or "MST_PENDING" | ToriiResponse #getTxStatus(). toString() |
 
 
 ### Exception
@@ -335,13 +335,13 @@ The return value is taken from IrohaEETransactionException.
 |:-|:----|:----|:----|
 | tx_hash | Transaction hash | 32 byte long hash | IrohaEETransactionException #getResponse(). getTxHash() |
 | status | Transaction status | one of the "REJECTED" or "STATELESS _ VALIDATION _ FAILED" | IrohaEETransactionException #getResponse(). getTxStatus(). toString() | 
-| error_code | Error Codes | Stateful validation error codes Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
+| error_code | Error Codes | error codes of stateful validation Error codes are compliant with the IrohaAPI specification | IrohaEETransactionException #getStatefullErrorCode() |
 
 ### Content
 Create a new asset in the specified domain.
 
 ### Authority
-The issuer of the transaction must have the can _ create _ asset privilege.
+The issuer of the transaction must have the can_create_asset privilege.
 
 ### Limitations
 <br>
@@ -379,7 +379,7 @@ The return value is taken from IrohaEETransactionException.
 Create a new domain in the Iroha network.
 
 ### Authority
-The issuer of the transaction must have the can _ create _ domain privilege.
+The issuer of the transaction must have the can_create_domain privilege.
 
 ### Limitations
 <br>
@@ -417,7 +417,7 @@ The return value is taken from IrohaEETransactionException.
 Create a new role on the system.
 
 ### Authority
-The issuer of the transaction must have the can _ create _ role privilege.
+The issuer of the transaction must have the can_create_role privilege.
 
 ### Limitations
 <br>
@@ -437,7 +437,7 @@ Detach Roles
 | Return Value Name | Content | Format | Retrieval Methods (Java) |
 |:-|:----|:----|:---|
 | tx_hash | Transaction hash | 32 byte long hash | ToriiResponse #getTxHash() | 
-| status | transaction states | one of the "COMMITTED" or "MST _ PENDING" | ToriiResponse #getTxStatus(). toString() |
+| status | transaction states | one of the "COMMITTED" or "MST_PENDING" | ToriiResponse #getTxStatus(). toString() |
 
 ### Exception
 At command execution error, IrohaEETransactionException is transmitted.
@@ -542,7 +542,7 @@ The return value is taken from IrohaEETransactionException.
 Write the fact that the peer was removed to the peer network in the ledger.
 
 ### Authority
-The issuer of the transaction must have the can _ remove _ peer privilege.
+The issuer of the transaction must have the can_remove_peer privilege.
 
 ### Limitations
 <br>
@@ -671,7 +671,7 @@ The return value is taken from IrohaEETransactionException.
 Sets the key value information associated with the specified account. If the account already has a key, overwrite the value.  
 
 ### Authority
-If the issuer of the transaction wants to set details for another account, it must either have the can _ set _ detail privilege or have delegated the can _ set _ my _ account _ detail privilege from that account. (No permissions are required to set details for the transaction issuer's own account)  
+If the issuer of the transaction wants to set details for another account, it must either have the can_set_detail privilege or have delegated the can_set_my_account_detail privilege from that account. (No permissions are required to set details for the transaction issuer's own account)  
 
 ### Limitations
 <br>
@@ -708,7 +708,7 @@ The return value is taken from IrohaEETransactionException.
 Sets the quorum count for the account for the specified account.
 
 ### Authority
-The can _ set _ quorum privilege is required if the transaction issuer wants to set its own quorum count. If the transaction issuer sets the quorum count for another account, the can_set_my_quorum privilege must be delegated from that account.  
+The can_set_quorum privilege is required if the transaction issuer wants to set its own quorum count. If the transaction issuer sets the quorum count for another account, the can_set_my_quorum privilege must be delegated from that account.  
 
 ### Limitations
 <br>
@@ -1049,7 +1049,7 @@ The return value is taken from IrohaEEQueryException.
 | error_code | error code | error code of stateful validation     Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode() |
 
 ### Content
-Gets a list of transactions issued by the specified account. If the first _ tx _ hash argument is unspecified, the first transaction is returned.  
+Gets a list of transactions issued by the specified account. If the first_tx_hash argument is unspecified, the first transaction is returned.  
 
 ### Authority
 The query issuer must have the can_get_my_acc_txs or can_get_domain_acc_txs or can_get_all_acc_txs privilege. The can_get_my_acc_txs privilege allows transactions to be retrieved only from the query issuer's own account ; the can_get_domain_acc_txs privilege allows transactions to be retrieved from an account that belongs to the same domain as the query issuer.
@@ -1089,7 +1089,7 @@ The return value is taken from IrohaEEQueryException.
 | error_code | error code | error code of stateful validation     Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode() |
 
 ### Content
-Gets a list of transactions issued by the specified account that pertain to the specified asset. If the first _ tx _ hash argument is unspecified, the first transaction is returned.  
+Gets a list of transactions issued by the specified account that pertain to the specified asset. If the first_tx_hash argument is unspecified, the first transaction is returned.  
 
 ### Authority
 The query issuer must have the can_get_my_acc_ast_txs or can_get_domain_acc_ast_txs or can_get_all_acc_ast_txs privilege. The can_get_my_acc_ast_txs privilege allows transactions to be retrieved only from the query issuer's own account ; the can_get_domain_acc_ast_txs privilege allows transactions to be retrieved from an account that belongs to the same domain as the query issuer.
@@ -1117,7 +1117,7 @@ Get the status of all assets in an account
 | total_number | | Total number of assets the account has | Positive integer less than 4294967296 | AccountAssetResponse# getTotalNumber() |
 | next_asset_id | | Asset ID at the top of the next page | <asset_name>#<domain_id> | AccountAssetResponse# getNextAssetId() |
 
-- If the last asset for the specified account is contained within the returned account _ assets array, the next _ asset _ id is empty
+- If the last asset for the specified account is contained within the returned account_assets array, the next_asset_id is empty
 
 ### Exception
 At query execution error, IrohaEEQueryException is sent.
@@ -1131,7 +1131,7 @@ The return value is taken from IrohaEEQueryException.
 | error_code | error code | error code of stateful validation     Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode() |
 
 ### Content
-Retrieve the balance information for all assets in the specified account. If the first _ asset _ id argument is unspecified, the first page is returned.  
+Retrieve the balance information for all assets in the specified account. If the first_asset_id argument is unspecified, the first page is returned.  
 
 ### Authority
 The query issuer must have the can_get_my_acc_ast or can_get_domain_acc_ast or can_get_all_acc_ast permissions. The can_get_my_acc_ast and can_get_domain_acc_ast permissions retrieve the asset state of only the query issuer's own account and the same domain as the query issuer, respectively.
@@ -1152,7 +1152,7 @@ Get account details
 | key | | Detail Key | String |
 | writer | | Detailed Information Entry Account ID | <account_name>@<domain_id> |
 
-* If account _ id is not specified, the query creator's account is treated as specified
+* If account_id is not specified, the query creator's account is treated as specified
 
 ### Return value
 | Return Value Name | | Content | Format | Retrieval Method (Java) |
@@ -1213,7 +1213,7 @@ The return value is taken from IrohaEEQueryException.
 Get the specified asset information.
 
 ### Authority
-The query issuer must have the can _ read _ assets privilege.
+The query issuer must have the can_read_assets privilege.
 
 ### Limitations
 <br>
@@ -1244,7 +1244,7 @@ The return value is taken from IrohaEEQueryException.
 Get a list of the roles that exist on the system.
 
 ### Authority
-The query issuer must have the can _ get _ roles privilege.
+The query issuer must have the can_get_roles privilege.
 
 ### Limitations
 <br>
@@ -1277,7 +1277,7 @@ The return value is taken from IrohaEEQueryException.
 Gets the list of permissions set for the specified role.
 
 ### Authority
-The query issuer must have the can _ get _ roles privilege.
+The query issuer must have the can_get_roles privilege.
 
 ### Limitations
 <br>
@@ -1330,7 +1330,7 @@ Returns an array of tuples with
 | Return Value Name | Content | Format | Retrieval Method (Java) |
 |:----|:----|:----|:----|
 | tx_hash | Transaction hash | 32 byte long hash | ToriiResponse#getTxHash() |
-| status | Transaction State | "COMMITTED", "REJECTED", "STATELESS_VALIDATION_FAILED", or "MST _ PENDING" | ToriiResponse# getTxStatus().toString() |
+| status | Transaction State | "COMMITTED", "REJECTED", "STATELESS_VALIDATION_FAILED", or "MST_PENDING" | ToriiResponse# getTxStatus().toString() |
 
 ### Exception
 If there are even 1 errors in the transaction in the batch, IrohaEEBatchTransactionException is sent.
@@ -1414,8 +1414,8 @@ Issue a batch command to add peers to the network
 ### Argument
 | Argument name | Required | Content | Format |
 |:----|:----:|:----|:----|
-| address | ○ | Resolvable addresses in the network | IPv6 4, IPv6 6, domain name, etc. |
-| peer_key | ○ | Peer public key | Ed 25519 public key |
+| address | ○ | Resolvable addresses in the network | IPv4, IPv6, domain name, etc. |
+| peer_key | ○ | Peer public key | ed25519 public key |
 
 - Public keys are used in consensus building algorithms
 - Cannot use the same public key as another peer
@@ -1454,7 +1454,7 @@ Issue a batch command to add a signature
 Issue a batch command to add a signature to the specified account.
 
 ### Authority
-The issuer of the transaction must have the can _ add _ signatory privilege.
+The issuer of the transaction must have the can_add_signatory privilege.
 
 
 The can_add_signatory privilege is required if the issuer of the transaction adds its own signature. If the issuer of the transaction adds a signature to another account, the can_add_my_signatory privilege must be delegated from that account.  
@@ -1482,7 +1482,7 @@ Issue a batch command to add a role to an account
 Issue a batch command to add roles to the specified account.
 
 ### Authority
-The issuer of the transaction must have the can _ append _ role privilege.
+The issuer of the transaction must have the can_append_role privilege.
 
 ### Limitations
 <br>
@@ -1509,7 +1509,7 @@ Issue a batch command to create a new account
 Issue a batch command to create a new account in the specified domain.
 
 ### Authority
-The issuer of the transaction must have the can _ create _ account privilege.
+The issuer of the transaction must have the can_create_account privilege.
 
 ### Limitations
 <br>
@@ -1536,7 +1536,7 @@ Issue batch commands to issue assets
 Issue batch commands to create new assets in the specified domain.
 
 ### Authority
-The issuer of the transaction must have the can _ create _ asset privilege.
+The issuer of the transaction must have the can_create_asset privilege.
 
 ### Limitations
 <br>
@@ -1562,7 +1562,7 @@ Issue a batch command to create a domain
 Issue a batch command to create a new domain in the Iroha network.
 
 ### Authority
-The issuer of the transaction must have the can _ create _ domain privilege.
+The issuer of the transaction must have the can_create_domain privilege.
 
 ### Limitations
 <br>
@@ -1689,7 +1689,7 @@ Issue a batch command to remove signatures
 | Argument name | Required | Content | Format |
 |:----|:----:|:----|:----|
 | account_id | ○ | Account ID | <account_name>@<domain_id> |
-| public_key | ○ | Public key to delete from the account | Ed 25519 public key |
+| public_key | ○ | Public key to delete from the account | ed25519 public key |
 
 - Account ID must be created in advance
 - The number of public keys associated with the account, excluding the public key to be deleted, must be greater than or equal to quorum
@@ -1768,7 +1768,7 @@ Issue batch commands to set account details
 Issue a batch command to set key value information associated with the specified account. If the account already has a key, overwrite the value.  
 
 ### Authority
-If the issuer of the transaction wants to set details for another account, it must either have the can_set_detail privilege or have delegated the can_set_my_account _ detail privilege from that account. (No permissions are required to set details for the transaction issuer's own account)  
+If the issuer of the transaction wants to set details for another account, it must either have the can_set_detail privilege or have delegated the can_set_my_account_detail privilege from that account. (No permissions are required to set details for the transaction issuer's own account)  
 
 ### Limitations
 <br>
@@ -1820,7 +1820,7 @@ Issue batch commands to reduce the quantity of assets
 Issue a batch command that decrements the amount of assets owned by the account that issued the transaction.
 
 ### Authority
-The transaction issuer must have the can_subtract_asset_qty or can _ subtract_domain_asset_qty privilege. However, the can_subtract_domain_asset_qty privilege can only be executed on assets in the domain to which the transaction issuer belongs.  
+The transaction issuer must have the can_subtract_asset_qty or can_subtract_domain_asset_qty privilege. However, the can_subtract_domain_asset_qty privilege can only be executed on assets in the domain to which the transaction issuer belongs.  
 
 ### Limitations
 <br>
@@ -1851,7 +1851,7 @@ Issue a batch command to transfer assets
 Issue batch commands to transfer assets from one account to another.
 
 ### Authority
-The issuer of the transaction must have the can_transfer privilege. The relocation account must have the can _ receive privilege. If you want the source account to have an account other than the issuer of the transaction, the can_transfer_my_assets privilege must be delegated to it.    
+The issuer of the transaction must have the can_transfer privilege. The relocation account must have the can_receive privilege. If you want the source account to have an account other than the issuer of the transaction, the can_transfer_my_assets privilege must be delegated to it.    
 
 ### Limitations
 <br>
@@ -1878,15 +1878,15 @@ Issue a batch command to replace the contents of the account details
 Issue a batch command to update the key value information with the new value only if the current value corresponding to the key is the specified value. If the specified key does not exist in the account, the new value is set to the key value information.  
 
 ### Authority
-The issuer of the transaction must have the can _ get _ my _ acc _ detail, can _ get _ all _ acc _ detail, or can _ get _ domain _ acc _ detail permissions to set details for his account.
+The issuer of the transaction must have the can_get_my_acc_detail, can_get_all_acc_ detail, or can_get_domain_acc_detail permissions to set details for his account.
 
 If the issuer of the transaction wants to set details for another account, it must either have the can_set_detail privilege or have delegated the can_set_my_account_detail privilege from that account. Can_get_all_acc_detail or can_get_domain_acc_detail. However, the can_get_domain_acc_detail privilege can only be run against accounts in the domain to which the transaction issuer belongs.
 
 | Target Account | Necessary authority |
 |:----|:----|
 | Transaction issuer itself | 1. can_get_my_acc_detail / can_get_all_acc_detail / can_get_domain_acc_detail |
-| Accounts in the same domain | 1. can_set_detail / (granted) can_set_my_account_detail  2. can_get_all_acc_detail / can_get_domain_acc_detail<br> |
-| Accounts in another domain | 1. can_set_detail / (granted) can_set_my_account_detail n2. can_get_all_acc_detail<br> |
+| Accounts in the same domain | 1. can_set_detail / (granted) can_set_my_account_detail   2. can_get_all_acc_detail / can_get_domain_acc_detail<br> |
+| Accounts in another domain | 1. can_set_detail / (granted) can_set_my_account_detail   2. can_get_all_acc_detail<br> |
 
 ### Limitations
 <br>
