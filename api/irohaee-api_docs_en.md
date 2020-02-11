@@ -852,7 +852,7 @@ Get account status
 ### Argument
 | Argument name | Required | Content | Format |
 |:----|:----:|:----|:----|
-| account_id | 0 | ID of the account whose status you want to query | <account_name>@<domain_id> |
+| account_id | ○ | ID of the account whose status you want to query | <account_name>@<domain_id> |
 
 ### Return value
 | Return Value Name | Content | Format | Retrieval Method (Java) |
@@ -864,19 +864,20 @@ Get account status
 | account_roles | Array of role names existing on the system | Array of strings | AccountResponse# getAccountRolesList() |
 
 ### Exception
-A query execution error IrohaEEQueryException is sent.
+At query execution error, IrohaEEQueryException is sent.
 
 The return value is taken from IrohaEEQueryException.
 
 | Return Value Name | Content | Format | Retrieval Methods (Java) |
 |:-|:----|:----|:----| 
-| Reason | Cause code | [Cause code](#Causecode) is based on IrohaAPI specification | IrohaEEQueryException #getErrorResponse(). getReasonValue() | error  message | error message | IrohaEEQueryException #getErrorResponse(). getMessage() | error _ code | error code of stateful validation | error code of stateful validation<br>error code is based on IrohaAPI specification | IrohaEEQueryException#getStatefullErrorCode()
+| Reason | Cause code | [Cause code](#Causecode) is based on IrohaAPI specification | IrohaEEQueryException #getErrorResponse(). getReasonValue() |
+| massage | error  message | error message | IrohaEEQueryException #getErrorResponse(). getMessage() | | error_code | error code | error code of stateful validation | error code of stateful validation<br>error code is based on IrohaAPI specification | IrohaEEQueryException#getStatefullErrorCode()
 
 ### Content
 Gets the status of the specified account.
 
 ### Authority
-The query issuer must have the can _ get _ my _ account or can _ get _ domain _ account or can _ get _ all _ account permissions. The can _ get _ my _ account and can _ get _ domain _ account privileges allow you to get the status of only the query issuer's own account and the can _ get _ domain _ account privileges allow you to get the status of an account that belongs to the same domain as the query issuer.
+The query issuer must have the can_get_my_account or can_get_domain_account or can_get_all_account permissions. The can_get_my_account and can_get_domain_account privileges allow you to get the status of only the query issuer's own account and the can_get_domain_account privileges allow you to get the status of an account that belongs to the same domain as the query issuer.
 
 ### Limitations
 <br>
@@ -895,17 +896,21 @@ Get block
 | block | Retrieved Blocks | Block structure |
 
 ### Exception
-A query execution error IrohaEEQueryException is sent.
+At query execution error, IrohaEEQueryException is sent.
 
 The return value is taken from IrohaEEQueryException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- -- : ---- -- reason Cause Code is IrohaAPI compliant IrohaEEQueryException #getErrorResponse (). getReasonValue () message error message error message IrohaEEQueryException #getErrorResponse (). getMessage () error _ code Stateful validation error code Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode ()[](#Causecode)<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) | 
+|:-|:----|:----|:----|
+| reason | Cause Code | [Cause code](#Causecode) is based on IrohaAPI specification | IrohaEEQueryException #getErrorResponse(). getReasonValue() | 
+| message | error message | error message | IrohaEEQueryException#getErrorResponse().getMessage() |
+| error_code | error code | error code of stateful validation     Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode() |
 
 ### Content
 Gets the specified block.
 
 ### Authority
-The query issuer must have the can _ get _ blocks privilege.
+The query issuer must have the can_get_blocks privilege.
 
 ### Limitations
 <br>
@@ -924,17 +929,21 @@ Get a signature tied to an account
 | keys | Arrangement of public keys | Sequence of ed 25519 | SignatoriesResponse#getKeysList() |
 
 ### Exception
-A query execution error IrohaEEQueryException is sent.
+At query execution error, IrohaEEQueryException is sent.
 
 The return value is taken from IrohaEEQueryException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- -- : ---- -- reason Cause Code is IrohaAPI compliant IrohaEEQueryException #getErrorResponse (). getReasonValue () message error message error message IrohaEEQueryException #getErrorResponse (). getMessage () error _ code Stateful validation error code Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode ()[](#Causecode)<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) | 
+|:-|:----|:----|:----|
+| reason | Cause Code | [Cause code](#Causecode) is based on IrohaAPI specification | IrohaEEQueryException #getErrorResponse(). getReasonValue() | 
+| message | error message | error message | IrohaEEQueryException#getErrorResponse().getMessage() |
+| error_code | error code | error code of stateful validation     Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode() |
 
 ### Content
 Gets the signature associated with the specified account.
 
 ### Authority
-The query issuer must have can _ get _ my _ signatories or can _ get _ domain _ signatories or can _ get _ all _ signatories permissions. The can _ get _ my _ signatories and can _ get _ domain _ signatories permissions allow you to get the signature of only the query issuer's own account and the can _ get _ domain _ water permissions allow you to get the signature of an account that belongs to the same domain as the query issuer.
+The query issuer must have can_get_my_signatories or can_get_domain_signatories or can_get_all_signatories permissions. The can_get_my_signatories and can_get_domain_signatories permissions allow you to get the signature of only the query issuer's own account and the can_get_domain_water permissions allow you to get the signature of an account that belongs to the same domain as the query issuer.
 
 ### Limitations
 <br>
@@ -945,7 +954,7 @@ Get a transaction
 ### Argument
 | Argument name | Required | Content | Format |
 |:----|:----:|:----|:----|
-| tx_hashes | 0 | Array of hashes for the transactions to retrieve | 32 byte long hash array |
+| tx_hashes | ⚪︎ | Array of hashes for the transactions to retrieve | 32 byte long hash array |
 
 ### Return value
 | Return Value Name | Content | Format | Retrieval Method (Java) |
@@ -953,17 +962,21 @@ Get a transaction
 | transactions | Array of committed transactions | Array of transactions | TransactionsResponse#getTransactionsList() |
 
 ### Exception
-A query execution error IrohaEEQueryException is sent.
+At query execution error, IrohaEEQueryException is sent.
 
 The return value is taken from IrohaEEQueryException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- -- : ---- -- reason Cause Code is IrohaAPI compliant IrohaEEQueryException #getErrorResponse (). getReasonValue () message error message error message IrohaEEQueryException #getErrorResponse (). getMessage () error _ code Stateful validation error code Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode ()[](#Causecode)<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) | 
+|:-|:----|:----|:----|
+| reason | Cause Code | [Cause code](#Causecode) is based on IrohaAPI specification | IrohaEEQueryException #getErrorResponse(). getReasonValue() | 
+| message | error message | error message | IrohaEEQueryException#getErrorResponse().getMessage() |
+| error_code | error code | error code of stateful validation     Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode() |
 
 ### Content
 Get the specified transaction.
 
 ### Authority
-The query issuer must have the can _ get _ my _ txs or can _ get _ all _ txs privilege. With the can _ get _ my _ txs privilege, only transactions issued by the query issuer itself can be retrieved.
+The query issuer must have the can_get_my_txs or can_get_all_txs privilege. With the can_get_my_txs privilege, only transactions issued by the query issuer itself can be retrieved.
 
 ### Limitations
 <br>
@@ -986,11 +999,15 @@ Get pending transactions
 | batch_size | Minimum page size required to retrieve the next batch | Positive integer | PendingTransactionsPageResponse# getNextBatchInfo().getBatchSize() |
 
 ### Exception
-A query execution error IrohaEEQueryException is sent.
+At query execution error, IrohaEEQueryException is sent.
 
 The return value is taken from IrohaEEQueryException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- -- : ---- -- reason Cause Code is IrohaAPI compliant IrohaEEQueryException #getErrorResponse (). getReasonValue () message error message error message IrohaEEQueryException #getErrorResponse (). getMessage () error _ code Stateful validation error code Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode ()[](#Causecode)<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) | 
+|:-|:----|:----|:----|
+| reason | Cause Code | [Cause code](#Causecode) is based on IrohaAPI specification | IrohaEEQueryException #getErrorResponse(). getReasonValue() | 
+| message | error message | error message | IrohaEEQueryException#getErrorResponse().getMessage() |
+| error_code | error code | error code of stateful validation     Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode() |
 
 ### Content
 Get a list of pending multisignature transactions or batches of transactions issued by the query issuer itself.
@@ -1018,20 +1035,24 @@ Capture transactions for each account
 | all_transactions_size | Number of transactions stored on the system | Integer | TransactionsPageResponse# getAllTransactionsSize() |
 | first_tx_hash | Transaction hash at the top of the next page | 32 byte long hash | TransactionsPageResponse# getNextTxHash() |
 
-- First _ tx _ hash is empty if the last transaction for the specified account is contained in the returned array
+- First_tx_hash is empty if the last transaction for the specified account is contained in the returned array
 
 ### Exception
-A query execution error IrohaEEQueryException is sent.
+At query execution error, IrohaEEQueryException is sent.
 
 The return value is taken from IrohaEEQueryException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- -- : ---- -- reason Cause Code is IrohaAPI compliant IrohaEEQueryException #getErrorResponse (). getReasonValue () message error message error message IrohaEEQueryException #getErrorResponse (). getMessage () error _ code Stateful validation error code Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode ()[](#Causecode)<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) | 
+|:-|:----|:----|:----|
+| reason | Cause Code | [Cause code](#Causecode) is based on IrohaAPI specification | IrohaEEQueryException #getErrorResponse(). getReasonValue() | 
+| message | error message | error message | IrohaEEQueryException#getErrorResponse().getMessage() |
+| error_code | error code | error code of stateful validation     Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode() |
 
 ### Content
 Gets a list of transactions issued by the specified account. If the first _ tx _ hash argument is unspecified, the first transaction is returned.  
 
 ### Authority
-The query issuer must have the can _ get _ my _ acc _ txs or can _ get _ domain _ acc _ txs or can _ get _ all _ acc _ txs privilege. The can _ get _ my _ acc _ txs privilege allows transactions to be retrieved only from the query issuer's own account ; the can _ get _ domain _ acc _ txs privilege allows transactions to be retrieved from an account that belongs to the same domain as the query issuer.
+The query issuer must have the can_get_my_acc_txs or can_get_domain_acc_txs or can_get_all_acc_txs privilege. The can_get_my_acc_txs privilege allows transactions to be retrieved only from the query issuer's own account ; the can_get_domain_acc_txs privilege allows transactions to be retrieved from an account that belongs to the same domain as the query issuer.
 
 ### Limitations
 <br>
@@ -1054,20 +1075,24 @@ Capture transactions related to assets per account
 | all_transactions_size | Number of transactions stored on the system | Integer | TransactionsPageResponse# getAllTransactionsSize() |
 | first_tx_hash | Transaction hash at the top of the next page | 32 byte long hash | TransactionsPageResponse# getNextTxHash() |
 
-- First _ tx _ hash is empty if the last transaction for the specified account is contained in the returned array
+- First_tx_hash is empty if the last transaction for the specified account is contained in the returned array
 
 ### Exception
 A query execution error IrohaEEQueryException is sent.
 
 The return value is taken from IrohaEEQueryException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- -- : ---- -- reason Cause Code is IrohaAPI compliant IrohaEEQueryException #getErrorResponse (). getReasonValue () message error message error message IrohaEEQueryException #getErrorResponse (). getMessage () error _ code Stateful validation error code Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode ()[](#Causecode)<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) | 
+|:-|:----|:----|:----|
+| reason | Cause Code | [Cause code](#Causecode) is based on IrohaAPI specification | IrohaEEQueryException #getErrorResponse(). getReasonValue() | 
+| message | error message | error message | IrohaEEQueryException#getErrorResponse().getMessage() |
+| error_code | error code | error code of stateful validation     Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode() |
 
 ### Content
 Gets a list of transactions issued by the specified account that pertain to the specified asset. If the first _ tx _ hash argument is unspecified, the first transaction is returned.  
 
 ### Authority
-The query issuer must have the can _ get _ my _ acc _ ast _ txs or can _ get _ domain _ acc _ ast _ txs or can _ get _ all _ acc _ ast _ txs privilege. The can _ get _ my _ acc _ ast _ txs privilege allows transactions to be retrieved only from the query issuer's own account ; the can _ get _ domain _ acc _ ast _ txs privilege allows transactions to be retrieved from an account that belongs to the same domain as the query issuer.
+The query issuer must have the can_get_my_acc_ast_txs or can_get_domain_acc_ast_txs or can_get_all_acc_ast_txs privilege. The can_get_my_acc_ast_txs privilege allows transactions to be retrieved only from the query issuer's own account ; the can_get_domain_acc_ast_txs privilege allows transactions to be retrieved from an account that belongs to the same domain as the query issuer.
 
 ### Limitations
 <br>
@@ -1095,17 +1120,21 @@ Get the status of all assets in an account
 - If the last asset for the specified account is contained within the returned account _ assets array, the next _ asset _ id is empty
 
 ### Exception
-A query execution error IrohaEEQueryException is sent.
+At query execution error, IrohaEEQueryException is sent.
 
 The return value is taken from IrohaEEQueryException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- -- : ---- -- reason Cause Code is IrohaAPI compliant IrohaEEQueryException #getErrorResponse (). getReasonValue () message error message error message IrohaEEQueryException #getErrorResponse (). getMessage () error _ code Stateful validation error code Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode ()[](#Causecode)<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) | 
+|:-|:----|:----|:----|
+| reason | Cause Code | [Cause code](#Causecode) is based on IrohaAPI specification | IrohaEEQueryException #getErrorResponse(). getReasonValue() | 
+| message | error message | error message | IrohaEEQueryException#getErrorResponse().getMessage() |
+| error_code | error code | error code of stateful validation     Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode() |
 
 ### Content
 Retrieve the balance information for all assets in the specified account. If the first _ asset _ id argument is unspecified, the first page is returned.  
 
 ### Authority
-The query issuer must have the can _ get _ my _ acc _ ast or can _ get _ domain _ acc _ ast or can _ get _ all _ acc _ ast permissions. The can _ get _ my _ acc _ ast and can _ get _ domain _ acc _ ast permissions retrieve the asset state of only the query issuer's own account and the same domain as the query issuer, respectively.
+The query issuer must have the can_get_my_acc_ast or can_get_domain_acc_ast or can_get_all_acc_ast permissions. The can_get_my_acc_ast and can_get_domain_acc_ast permissions retrieve the asset state of only the query issuer's own account and the same domain as the query issuer, respectively.
 
 ### Limitations
 <br>
@@ -1116,9 +1145,9 @@ Get account details
 ### Argument
 | Argument name | Required | Content | Format |
 |:----|:----:|:----|:----|
-| page_size | 0 | Maximum amount of asset information returned with return values | Positive integer less than 4294967296 |
-| first_record_id_writer | 0 | The account ID of the person who filled out the detail information at the top of the page | <account_name>@<domain_id> |
-| first_record_id_key | 0 | Detail keys at the top of the page | String |
+| page_size | ⚪︎ | Maximum amount of asset information returned with return values | Positive integer less than 4294967296 |
+| first_record_id_writer | ⚪︎ | The account ID of the person who filled out the detail information at the top of the page | <account_name>@<domain_id> |
+| first_record_id_key | ⚪︎ | Detail keys at the top of the page | String |
 | account_id | | Account ID to get account details | <account_name>@<domain_id> |
 | key | | Detail Key | String |
 | writer | | Detailed Information Entry Account ID | <account_name>@<domain_id> |
@@ -1135,17 +1164,21 @@ Get account details
 | | key | Keys for detailed information at the top of the next page | String | AccountDetailRecordId# getKey() |
 
 ### Exception
-A query execution error IrohaEEQueryException is sent.
+At query execution error, IrohaEEQueryException is sent.
 
 The return value is taken from IrohaEEQueryException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- -- : ---- -- reason Cause Code is IrohaAPI compliant IrohaEEQueryException #getErrorResponse (). getReasonValue () message error message error message IrohaEEQueryException #getErrorResponse (). getMessage () error _ code Stateful validation error code Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode ()[](#Causecode)<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) | 
+|:-|:----|:----|:----|
+| reason | Cause Code | [Cause code](#Causecode) is based on IrohaAPI specification | IrohaEEQueryException #getErrorResponse(). getReasonValue() | 
+| message | error message | error message | IrohaEEQueryException#getErrorResponse().getMessage() |
+| error_code | error code | error code of stateful validation     Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode() |
 
 ### Content
 Get detailed information for the specified account.
 
 ### Authority
-The query issuer must have the can _ get _ my _ acc _ detail or can _ get _ domain _ acc _ detail or can _ get _ all _ acc _ detail permissions. The can _ get _ my _ acc _ detail privilege allows you to retrieve details only for the query issuer's own account ; the can _ get _ domain _ acc _ detail privilege allows you to retrieve details for an account that belongs to the same domain as the query issuer.
+The query issuer must have the can_get_my_acc_detail or can_get_domain_acc_detail or can_get_all_acc _detail permissions. The can_get_my_acc_detail privilege allows you to retrieve details only for the query issuer's own account ; the can_get_domain_acc_detail privilege allows you to retrieve details for an account that belongs to the same domain as the query issuer.
 
 ### Limitations
 <br>
@@ -1166,11 +1199,15 @@ Get asset information
 | precision | Number of decimal places for asset quantity | 0<=precision<=255 | AssetResponse#getAsset().getPrecision() |
 
 ### Exception
-A query execution error IrohaEEQueryException is sent.
+At query execution error, IrohaEEQueryException is sent.
 
 The return value is taken from IrohaEEQueryException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- -- : ---- -- reason Cause Code is IrohaAPI compliant IrohaEEQueryException #getErrorResponse (). getReasonValue () message error message error message IrohaEEQueryException #getErrorResponse (). getMessage () error _ code Stateful validation error code Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode ()[](#Causecode)<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) | 
+|:-|:----|:----|:----|
+| reason | Cause Code | [Cause code](#Causecode) is based on IrohaAPI specification | IrohaEEQueryException #getErrorResponse(). getReasonValue() | 
+| message | error message | error message | IrohaEEQueryException#getErrorResponse().getMessage() |
+| error_code | error code | error code of stateful validation     Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode() |
 
 ### Content
 Get the specified asset information.
@@ -1193,11 +1230,15 @@ None
 | roles | Role name array | Array of strings | RolesResponse#getRolesList() |
 
 ### Exception
-A query execution error IrohaEEQueryException is sent.
+At query execution error, IrohaEEQueryException is sent.
 
 The return value is taken from IrohaEEQueryException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- -- : ---- -- reason Cause Code is IrohaAPI compliant IrohaEEQueryException #getErrorResponse (). getReasonValue () message error message error message IrohaEEQueryException #getErrorResponse (). getMessage () error _ code Stateful validation error code Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode ()[](#Causecode)<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) | 
+|:-|:----|:----|:----|
+| reason | Cause Code | [Cause code](#Causecode) is based on IrohaAPI specification | IrohaEEQueryException #getErrorResponse(). getReasonValue() | 
+| message | error message | error message | IrohaEEQueryException#getErrorResponse().getMessage() |
+| error_code | error code | error code of stateful validation     Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode() |
 
 ### Content
 Get a list of the roles that exist on the system.
@@ -1219,14 +1260,18 @@ Get the permissions list for a role
 ### Return value
 | Return Value Name | Content | Format | Retrieval Method (Java) |
 |:----|:----|:----|:----|
-| permissions | Array of authority | ex: can_receive, can_transfer[] | RolePermissionsResponse#getPermissionsList() |
+| permissions | Array of authority | ex: [can_receive, can_transfer] | RolePermissionsResponse#getPermissionsList() |
 
 ### Exception
-A query execution error IrohaEEQueryException is sent.
+At query execution error, IrohaEEQueryException is sent.
 
 The return value is taken from IrohaEEQueryException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- -- : ---- -- reason Cause Code is IrohaAPI compliant IrohaEEQueryException #getErrorResponse (). getReasonValue () message error message error message IrohaEEQueryException #getErrorResponse (). getMessage () error _ code Stateful validation error code Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode ()[](#Causecode)<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) | 
+|:-|:----|:----|:----|
+| reason | Cause Code | [Cause code](#Causecode) is based on IrohaAPI specification | IrohaEEQueryException #getErrorResponse(). getReasonValue() | 
+| message | error message | error message | IrohaEEQueryException#getErrorResponse().getMessage() |
+| error_code | error code | error code of stateful validation     Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode() |
 
 ### Content
 Gets the list of permissions set for the specified role.
@@ -1248,22 +1293,26 @@ An array with the following objects
 
 | Return Value Name | | Content | Format | Retrieval Method (Java) |
 |:----|:----|:----|:----|:----|
-| peers | Array of peers | Array of objects with the following structure | PeersResponse#getPeersList() |
-| | address | Peer address | IPv6 4, IPv6 6, domain name, etc. | Peer#getAddress() |
-| | peer_key | Peer public key | Ed 25519 public key | Peer#getPeerKey() |
+| peers || Array of peers | Array of objects with the following structure | PeersResponse#getPeersList() |
+| | address | Peer address | IPv4, IPv6, domain name, etc. | Peer#getAddress() |
+| | peer_key | Peer public key | ed25519 public key | Peer#getPeerKey() |
 
 ### Exception
-A query execution error IrohaEEQueryException is sent.
+At query execution error, IrohaEEQueryException is sent.
 
 The return value is taken from IrohaEEQueryException.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- -- : ---- -- reason Cause Code is IrohaAPI compliant IrohaEEQueryException #getErrorResponse (). getReasonValue () message error message error message IrohaEEQueryException #getErrorResponse (). getMessage () error _ code Stateful validation error code Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode ()[](#Causecode)<br>
+| Return Value Name | Content | Format | Retrieval Methods (Java) | 
+|:-|:----|:----|:----|
+| reason | Cause Code | [Cause code](#Causecode) is based on IrohaAPI specification | IrohaEEQueryException #getErrorResponse(). getReasonValue() | 
+| message | error message | error message | IrohaEEQueryException#getErrorResponse().getMessage() |
+| error_code | error code | error code of stateful validation     Error Code is IrohaAPI compliant IrohaEEQueryException #getStatefullErrorCode() |
 
 ### Content
 Obtain a list of the peers registered on the Iroha network.
 
 ### Authority
-The query issuer must have the can _ get _ peers privilege.
+The query issuer must have the can_get_peers privilege.
 
 ### Limitations
 <br>
@@ -1281,14 +1330,17 @@ Returns an array of tuples with
 | Return Value Name | Content | Format | Retrieval Method (Java) |
 |:----|:----|:----|:----|
 | tx_hash | Transaction hash | 32 byte long hash | ToriiResponse#getTxHash() |
-| status | Transaction State | "COMMITTED", "REJECTED", "STATELESS _ VALIDATION _ FAILED", or "MST _ PENDING" | ToriiResponse# getTxStatus().toString() |
+| status | Transaction State | "COMMITTED", "REJECTED", "STATELESS_VALIDATION_FAILED", or "MST _ PENDING" | ToriiResponse# getTxStatus().toString() |
 
 ### Exception
 If there are even 1 errors in the transaction in the batch, IrohaEEBatchTransactionException is sent.
 
 Batch transaction results held within an exception are held for each transaction, including successful transactions.
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction hash 32 byte long hash IrohaEEBatchTransactionException #getResponses () n. getTxHash () status Transaction status "COMMITTED", "REJECTED", "STATELESS _ VALIDATION _ FAILED", or "MST _ PENDING" IrohaEEBatchTransactionException #getResponses () n. getTxStatus (). toString ()[][]
+| Return Value Name | Content | Format | Retrieval Methods (Java)|
+|:----|:----|:----|:----|
+| tx_hash | Transaction hash | 32 byte long hash | IrohaEEBatchTransactionException #getResponses () n. getTxHash | 
+| status | Transaction status | "COMMITTED", "REJECTED", "STATELESS_VALIDATION_FAILED", or "MST _ PENDING" | IrohaEEBatchTransactionException #getResponses() n. getTxStatus(). toString()|
 
 ### Content
 After setting the issued batch command to ORDERED mode, sign each transaction and send it to Iroha.
@@ -1311,12 +1363,15 @@ Returns an array of tuples with
 | Return Value Name | Content | Format | Retrieval Method (Java) |
 |:----|:----|:----|:----|
 | tx_hash | Transaction hash | 32 byte long hash | ToriiResponse# getTxHash() |
-| status | Transaction State | "COMMITTED", "REJECTED", "STATELESS _ VALIDATION _ FAILED", or "MST _ PENDING" | ToriiResponse# getTxStatus().toString() |
+| status | Transaction State | "COMMITTED", "REJECTED", "STATELESS_VALIDATION_FAILED", or "MST _ PENDING" | ToriiResponse# getTxStatus().toString() |
 
 ### Exception
 If there is an error in the transaction in the batch, IrohaEEBatchTransactionException is sent. Batch transaction results held within the exception are held for each transaction, but since they are atomic, the status is all REJECTED.  
 
-Return Value Name Content Format Retrieval Methods (Java) : - : ---- : ---- -- tx _ hash Transaction Hash 32 byte long IrohaEEBatchTransactionException #getResponses () n. getTxHash () status Transaction Status "REJECTED" IrohaEEBatchTransactionException #getResponses () n. getTxStatus (). toString ()[][]
+| Return Value Name | Content | Format | Retrieval Methods (Java) |
+|:----|:----|:----|:----|
+| tx_hash | Transaction Hash | 32 byte long hash |IrohaEEBatchTransactionException #getResponses() n. getTxHash() | 
+| status | Transaction Status | "REJECTED" | IrohaEEBatchTransactionException #getResponses() n. getTxStatus(). toString() |
 
 ### Content
 After setting the issued batch command to atomic mode, sign each transaction and send it to Iroha.
@@ -1348,7 +1403,7 @@ Issue batch commands to add quantities to assets
 Issue a batch command to add the amount of assets held by the account that issued the transaction.
 
 ### Authority
-The transaction issuer must have the can _ add _ asset _ qty or can _ add _ domain _ asset _ qty privilege. However, the can _ add _ domain _ asset _ qty privilege can only be executed on assets in the domain to which the transaction issuer belongs.  
+The transaction issuer must have the can_add_asset_qty or can_add_domain_asset_qty privilege. However, the can _ add_domain_asset_qty privilege can only be executed on assets in the domain to which the transaction issuer belongs.  
 
 ### Limitations
 <br>
@@ -1374,7 +1429,7 @@ Issue a batch command to add peers to the network
 Issue a batch command to write the fact that a peer has been added to the ledger for the peer network.
 
 ### Authority
-The issuer of the transaction must have the can _ add _ peer privilege.
+The issuer of the transaction must have the can_add_peer privilege.
 
 ### Limitations
 <br>
@@ -1386,7 +1441,7 @@ Issue a batch command to add a signature
 | Argument name | Required | Content | Format |
 |:----|:----:|:----|:----|
 | account_id | ○ | Account ID to which the signature is added | <account_name>@<domain_id> |
-| public_key | ○ | Public key to add to the account | Ed 25519 public key |
+| public_key | ○ | Public key to add to the account | ed25519 public key |
 
 - Account ID must be created in advance
 
@@ -1402,7 +1457,7 @@ Issue a batch command to add a signature to the specified account.
 The issuer of the transaction must have the can _ add _ signatory privilege.
 
 
-The can _ add _ signatory privilege is required if the issuer of the transaction adds its own signature. If the issuer of the transaction adds a signature to another account, the can _ add _ my _ signatory privilege must be delegated from that account.  
+The can_add_signatory privilege is required if the issuer of the transaction adds its own signature. If the issuer of the transaction adds a signature to another account, the can_add_my_signatory privilege must be delegated from that account.  
 
 ### Limitations
 <br>
@@ -1440,7 +1495,7 @@ Issue a batch command to create a new account
 |:----|:----:|:----|:----|
 | account_name | ○ | Account Name | [a-z_0-9{1,32}] |
 | domain_id | ○ | Domain ID | RFC1035, RFC1123 |
-| public_key | ○ | Public key to add to the account | Ed 25519 public key |
+| public_key | ○ | Public key to add to the account | ed25519 public key |
 
 - Domain ID must be created in advance
 - Account name must be unique within the domain
@@ -1522,7 +1577,7 @@ Issue a batch command to create a role
 | permissions | ○ | Array of authority | ex: can_receive, can_transfer[] |
 
 - Permissions must have one or more permissions
-- See here for configurable permissions[](https://iroha.readthedocs.io/en/latest/develop/api/permissions.html#list-of-permissions)
+- See [here](https://iroha.readthedocs.io/en/latest/develop/api/permissions.html#list-of-permissions) for configurable permissions
 
 ### Return value
 | Return Value Name | Content | Format |
@@ -1533,7 +1588,7 @@ Issue a batch command to create a role
 Issue a batch command to create a new role on the system.
 
 ### Authority
-The issuer of the transaction must have the can _ create _ role privilege.
+The issuer of the transaction must have the can_create_role privilege.
 
 ### Limitations
 <br>
@@ -1558,7 +1613,7 @@ Issue a batch command to detach roles
 Issue a batch command to detach the role from the specified account.
 
 ### Authority
-The issuer of the transaction must have the can _ detach _ role privilege.
+The issuer of the transaction must have the can_detach_role privilege.
 
 ### Limitations
 <br>
@@ -1573,7 +1628,7 @@ Issue a batch command to delegate authority
 | permission | ○ | Authority to delegate | Permissions that are grantable (see below) |
 
 - Account ID must be created in advance
-- The configurable grantable privileges are :[](https://iroha.readthedocs.io/en/latest/develop/api/permissions.html#list-of-permissions)
+- The configurable grantable privileges are [here](https://iroha.readthedocs.io/en/latest/develop/api/permissions.html#list-of-permissions)
    - can_add_my_signatory
    - can_remove_my_signatory
    - can_set_my_account_detail
@@ -1608,7 +1663,7 @@ Issue a batch command to remove a peer from the Iroha network
 ### Argument
 | Argument name | Required | Content | Format |
 |:----|:----:|:----|:----|
-| public_key | 0 | Public key of the peer to remove | Ed 25519 public key |
+| public_key | ⚪︎ | Public key of the peer to remove | ed25519 public key |
 
 - A peer with the specified public key must exist on the Iroha network
 - A peer other than the one with the specified public key must exist on the Iroha network
@@ -1622,7 +1677,7 @@ Issue a batch command to remove a peer from the Iroha network
 Issue a batch command to write the fact that the peer has been removed to the peer network.
 
 ### Authority
-The issuer of the transaction must have the can _ remove _ peer privilege.
+The issuer of the transaction must have the can_remove_peer privilege.
 
 ### Limitations
 <br>
@@ -1648,7 +1703,7 @@ Issue a batch command to remove signatures
 Issue a batch command to remove signatures from the specified account.
 
 ### Authority
-The can _ remove _ signatory privilege is required if the issuer of the transaction wants to remove its own signature. If a transaction issuer removes a signature from another account, the can _ remove _ my _ signatory privilege must be delegated from that account.  
+The can_remove_signatory privilege is required if the issuer of the transaction wants to remove its own signature. If a transaction issuer removes a signature from another account, the can_remove_my_signatory privilege must be delegated from that account.  
 
 ### Limitations
 <br>
@@ -1663,7 +1718,7 @@ Issue a batch command to revoke privileges
 | permission | ○ | Power to revoke | Permissions that are grantable (see below) |
 
 - The privileges you want to revoke must be granted in advance to the account you specify
-- The configurable grantable privileges are :[](https://iroha.readthedocs.io/en/latest/develop/api/permissions.html#list-of-permissions)
+- The configurable grantable privileges are [here](https://iroha.readthedocs.io/en/latest/develop/api/permissions.html#list-of-permissions)
    - can_add_my_signatory
    - can_remove_my_signatory
    - can_set_my_account_detail
@@ -1713,7 +1768,7 @@ Issue batch commands to set account details
 Issue a batch command to set key value information associated with the specified account. If the account already has a key, overwrite the value.  
 
 ### Authority
-If the issuer of the transaction wants to set details for another account, it must either have the can _ set _ detail privilege or have delegated the can _ set _ my _ account _ detail privilege from that account. (No permissions are required to set details for the transaction issuer's own account)  
+If the issuer of the transaction wants to set details for another account, it must either have the can_set_detail privilege or have delegated the can_set_my_account _ detail privilege from that account. (No permissions are required to set details for the transaction issuer's own account)  
 
 ### Limitations
 <br>
@@ -1739,7 +1794,7 @@ Issue a batch command to set the quorum for an account
 Issue a batch command to set the quorum count for the account for the specified account.
 
 ### Authority
-The can _ set _ quorum privilege is required if the transaction issuer wants to set its own quorum count. If the transaction issuer sets the quorum count for another account, the can _ set _ my _ quorum privilege must be delegated from that account.  
+The can_set_quorum privilege is required if the transaction issuer wants to set its own quorum count. If the transaction issuer sets the quorum count for another account, the can_set_my_quorum privilege must be delegated from that account.  
 
 ### Limitations
 <br>
@@ -1765,7 +1820,7 @@ Issue batch commands to reduce the quantity of assets
 Issue a batch command that decrements the amount of assets owned by the account that issued the transaction.
 
 ### Authority
-The transaction issuer must have the can _ subtract _ asset _ qty or can _ subtract _ domain _ asset _ qty privilege. However, the can _ subtract _ domain _ asset _ qty privilege can only be executed on assets in the domain to which the transaction issuer belongs.  
+The transaction issuer must have the can_subtract_asset_qty or can _ subtract_domain_asset_qty privilege. However, the can_subtract_domain_asset_qty privilege can only be executed on assets in the domain to which the transaction issuer belongs.  
 
 ### Limitations
 <br>
@@ -1796,7 +1851,7 @@ Issue a batch command to transfer assets
 Issue batch commands to transfer assets from one account to another.
 
 ### Authority
-The issuer of the transaction must have the can _ transfer privilege. The relocation account must have the can _ receive privilege. If you want the source account to have an account other than the issuer of the transaction, the can _ transfer _ my _ assets privilege must be delegated to it.    
+The issuer of the transaction must have the can_transfer privilege. The relocation account must have the can _ receive privilege. If you want the source account to have an account other than the issuer of the transaction, the can_transfer_my_assets privilege must be delegated to it.    
 
 ### Limitations
 <br>
@@ -1825,13 +1880,13 @@ Issue a batch command to update the key value information with the new value onl
 ### Authority
 The issuer of the transaction must have the can _ get _ my _ acc _ detail, can _ get _ all _ acc _ detail, or can _ get _ domain _ acc _ detail permissions to set details for his account.
 
-If the issuer of the transaction wants to set details for another account, it must either have the can _ set _ detail privilege or have delegated the can _ set _ my _ account _ detail privilege from that account. Can _ get _ all _ acc _ detail or can _ get _ domain _ acc _ detail. However, the can _ get _ domain _ acc _ detail privilege can only be run against accounts in the domain to which the transaction issuer belongs.
+If the issuer of the transaction wants to set details for another account, it must either have the can_set_detail privilege or have delegated the can_set_my_account_detail privilege from that account. Can_get_all_acc_detail or can_get_domain_acc_detail. However, the can_get_domain_acc_detail privilege can only be run against accounts in the domain to which the transaction issuer belongs.
 
 | Target Account | Necessary authority |
 |:----|:----|
 | Transaction issuer itself | 1. can_get_my_acc_detail / can_get_all_acc_detail / can_get_domain_acc_detail |
-| Accounts in the same domain | 1. can_set_detail / (granted) can_set_my_account_detail 2. can_get_all_acc_detail / can_get_domain_acc_detail<br> |
-| Accounts in another domain | 1. can_set_detail / (granted) can_set_my_account_detail 2. can_get_all_acc_detail<br> |
+| Accounts in the same domain | 1. can_set_detail / (granted) can_set_my_account_detail  2. can_get_all_acc_detail / can_get_domain_acc_detail<br> |
+| Accounts in another domain | 1. can_set_detail / (granted) can_set_my_account_detail n2. can_get_all_acc_detail<br> |
 
 ### Limitations
 <br>
